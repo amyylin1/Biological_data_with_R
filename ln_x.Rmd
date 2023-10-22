@@ -2,8 +2,15 @@
 title: "Untitled"
 author: "Amy"
 date: '2023-10-15'
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
 ---
+```{r}
+install.packages('tinytex')
+```
+
 
 ```{r}
 library('vcd')

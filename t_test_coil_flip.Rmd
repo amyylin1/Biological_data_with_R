@@ -1,0 +1,34 @@
+---
+title: "binomial distribution of flipping a coin"
+author: "Amy"
+date: '2023-10-22'
+output: pdf_document
+---
+
+# 1. generate a density function of 100 trials
+```{r}
+y = dbinom(0:100, prob = 0.5, size = 100)
+y
+```
+
+# 2. graph histgram
+```{r}
+plot(0:100, y, type = 'h')
+```
+
+# 3. choose critical value with cumulative probability function, pbinom()
+```{r}
+alpha = 0.05
+
+x = 0 : 100  # define x seq
+
+critical_val = x[ min(which(1 - pbinom(x, prob = 0.5, size = 100) < 0.05)) ]
+critical_val
+```
+
+# 4. plot
+```{r}
+plot(0:100, y, type = 'h')
+abline(v=critical_val, col='red')
+```
+
