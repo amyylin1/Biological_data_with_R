@@ -1,0 +1,56 @@
+---
+title: "students_t_test"
+author: "Amy"
+date: '2023-10-21'
+output: html_document
+---
+
+# t-test
+a clinical study of drug treating hypertension
+n = 20 
+compare the blood pressure of the control vs. the treated group
+
+## a. both-tail
+
+```{r}
+group_control=c(144,152,142,166,153,142,155,157,156,147) 
+group_treat=c(136,148,141,170,147,139,152,151,151,142)
+t.test( group_control, group_treat )
+```
+
+## b. plot
+
+```{r}
+x=seq(-4,4,length.out=100)
+      
+plot(x, dt(x,17.811), type="l")  # plot the PDF of the t-distribution
+
+abline( v = c(-1, 1)*qt(0.975, 17.811) )
+
+abline( v = 0.951 )
+
+axis( 1, at = 0.951, 't-obs') # add axis label 't-obs' at position x = 0.95
+```
+
+## c. right-tail 
+
+```{r}
+t.test( group_control, group_treat, alternative = 'greater')
+```
+
+## d. plot
+
+```{r}
+x = seq(-4, 4, by = 0.01)
+
+plot( x, dt(x, 17.188), type = 'l')
+
+abline( v = 1 * qt( 0.95, 18.888) )  # 95% CI left-tailed
+
+abline( v = 0.95164)  # add vertical line for t-statistic
+
+axis (1, at =  0.95164,  't-obs')
+```
+
+
+
