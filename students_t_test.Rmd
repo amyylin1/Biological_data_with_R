@@ -35,7 +35,7 @@ axis( 1, at = 0.951, 't-obs') # add axis label 't-obs' at position x = 0.95
 ## c. right-tail 
 
 ```{r}
-t.test( group_control, group_treat, alternative = 'greater')
+t.test( group_control, group_treat, paired = TRUE, alternative = 'greater')
 ```
 
 ## d. plot
@@ -43,9 +43,9 @@ t.test( group_control, group_treat, alternative = 'greater')
 ```{r}
 x = seq(-4, 4, by = 0.01)
 
-plot( x, dt(x, 17.188), type = 'l')
+plot( x, dt(x, 9), type = 'l')
 
-abline( v = 1 * qt( 0.95, 18.888) )  # 95% CI left-tailed
+abline( v = 1 * qt( 0.95, 9) )  # 95% CI left-tailed
 
 abline( v = 0.95164)  # add vertical line for t-statistic
 

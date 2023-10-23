@@ -1,0 +1,52 @@
+---
+title: "Null distribution of the p-value"
+author: "Amy"
+date: '2023-10-22'
+output: html_document
+---
+
+Suppose the sytolic blook pressure of a hypertension patient follows a normal distribution with 
+mean 150
+standard deviation of 10
+
+# 1. simulate the data assuming that the drug has no effect
+
+```{r}
+set.seed(1)
+
+before_treatment <- rnorm(10, mean = 150, sd = 10)
+
+after_treatment <- rnorm(10, mean = 150, sd = 10)
+
+result <- t.test(before_treatment, after_treatment, paired = TRUE, alternative = 'greater')
+result
+```
+
+```{r}
+result$p.value
+```
+
+# 2. generate p-val
+
+```{r}
+set.seed(1)
+
+pvals = numeric(10000) # do the simulation 10, 000 times
+
+for (i in 1:10000){
+      before_treatment <- rnorm(10, mean = 150, sd = 10)
+      after_treatment <- rnorm(10, mean = 150, sd = 10)
+      pvals[i] = t.test(before_treatment, after_treatment, paired = TRUE, alternative = 'greater')$p.value
+}
+```
+
+
+```{r}
+pvals
+```
+
+# 3. distribution of p-vals
+```{r}
+hist(pvals, breaks=30)
+```
+
