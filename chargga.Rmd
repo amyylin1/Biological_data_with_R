@@ -1,0 +1,95 @@
+
+# Multinomial: Chargaff
+
+# 1. load()
+```{r}
+load('ChargaffTable.RData')
+ChargaffTable
+```
+
+# 2. 
+
+```{r}
+fcn = function(x) { 
+      sum( (x[, 1] - x[, 2])^2 + (x[, 3] - x[, 4])^2 )
+} 
+
+chf_stat = fcn( ChargaffTable )
+
+n = 10000
+perm_stat = numeric( n )
+
+for (i in 1 : n ){
+      permuted = t( apply(ChargaffTable, 1, sample ))
+      perm_stat[i] = fcn ( permuted )
+}
+
+sum( perm_stat <= chf_stat)
+
+pChf = sum( perm_stat <= chf_stat )/ n
+pChf
+```
+
+# 1. sum of squared difference
+
+```{r}
+fcn = function(x) {
+      sum( (x[ , 1] - x[ , 2])^2 - (x[ , 3] - x[ , 4])^2 )
+}
+fcn
+```
+
+# 2. apply fcn to ChargaffTable
+
+```{r}
+chf_stat = fcn(ChargaffTable)
+chf_stat
+```
+
+# 3. n = # of permutations
+
+```{r}
+n = 10000
+```
+
+# 4. empty numeric vector to store the test statistics from the permuted data
+
+```{r}
+perm_stat = numeric(n)
+```
+
+# 5. loop thru 
+
+```{r}
+for (i in 1:n) {
+      permuted = t (apply(ChargaffTable, 1, sample))
+      perm_stat = fcn( permuted )
+}
+```
+
+## a. random permuted data
+
+```{r}
+permuted = t (apply(ChargaffTable, 1, sample))
+permuted
+```
+
+## b. apply fcn to permuted data
+
+```{r}
+perm_stat = fcn(permuted)
+perm_stat
+```
+
+# 6. sum 
+
+```{r}
+sum( chf_stat <= perm_stat)
+
+```
+
+# 7. pval
+```{r}
+pchf = sum( chf_stat <= perm_stat) / n
+pchf
+```

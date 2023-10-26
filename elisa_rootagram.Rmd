@@ -1,0 +1,45 @@
+
+
+# ELISA data 
+
+```{r}
+load('e100.RData')
+```
+
+# 1. -which(max())
+
+```{r}
+e99 <- e100[ -which.max( e100 ) ]
+e99
+```
+
+```{r}
+table(e99)
+```
+
+```{r}
+e99_1 = e100[ -which.max(e100) ]
+e99_1
+```
+
+```{r}
+table(e99_1)
+```
+
+# 2. barplot()
+
+```{r}
+barplot(table(e99))
+```
+
+# 3. rootogram
+
+- visualizing goodness of fit
+
+```{r}
+library('vcd')
+
+gf = goodfit( e99, 'poisson')
+
+rootogram(gf)
+```

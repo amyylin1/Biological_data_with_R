@@ -1,0 +1,59 @@
+
+
+# best lambda:  MLH
+
+# 1. function()
+
+
+```{r}
+load('e100.RData')
+e100
+```
+
+```{r}
+logliklihood = function( lambda, data = e100 ) {
+      sum( log ( dpois( data, lambda )))
+}
+
+lambda = seq( 0.05, 0.95, by = 0.01 )
+
+loglik = sapply( lambda, logliklihood )
+
+plot( lambda, loglik, type = 'l' )
+
+m = mean(e100)
+
+abline( v = m)
+
+abline( h = logliklihood(m) )
+```
+
+
+# 2. goodfit(x, type)
+
+type:  character string indicating:  for goodfit, which distribution should be fit
+
+```{r}
+gf = goodfit(e100, 'poisson')
+```
+
+
+# 3. names()
+
+```{r}
+names(gf)
+```
+
+# 4. gf$par
+
+```{r}
+gf$par
+```
+
+# 5. rootogram
+```{r}
+rootogram(goodfit( e100, 'poisson' ))
+```
+
+
+

@@ -1,0 +1,8 @@
+
+
+# ELISA data 
+
+```{r}
+load('e100.RData')
+```
+

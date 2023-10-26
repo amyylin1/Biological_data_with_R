@@ -28,9 +28,9 @@ t.test( group_control, group_treat )
 ```{r}
 x = seq( -4,4, length.out = 100 ) # assign x 
       
-plot(x, dt(x,17.811), type="l")  # plot the PDF of the t-distribution
+plot( x, dt( x,17.811 ), type = "l" )  # plot the PDF of the t-distribution
 
-abline( v = c(-1, 1)*qt(0.975, 17.811), col='red' )
+abline( v = c( -1, 1 ) * qt( 0.975, 17.811 ), col = 'red' )
 
 abline( v = 0.951 )
 
@@ -46,15 +46,15 @@ t.test( group_control, group_treat, alternative = 'greater')
 ## d. plot
 
 ```{r}
-x = seq(-4, 4, by = 0.01)
+x = seq( -4, 4, by = 0.01 )
 
-plot( x, dt(x, 17.888), type = 'l')
+plot( x, dt( x, 17.888 ), type = 'l' )
 
-abline( v = qt( 0.95, 17.888), col = 'red' )  # 95% CI left-tailed
+abline( v = qt( 0.95, 17.888 ), col = 'red' )  # 95% CI left-tailed
 
-abline( v = 0.95164)  # add vertical line for t-statistic
+abline( v = 0.95164 )  # add vertical line for t-statistic
 
-axis (1, at =  0.95164,  't-obs')
+axis ( 1, at =  0.95164,  't-obs')
 ```
 
 ### 1. dt( x, 17.888 )

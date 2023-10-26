@@ -1,0 +1,15 @@
+
+# rpois + rootogram
+
+# 1. 
+
+```{r}
+library('vcd')
+
+sim = rpois( n = 1000, lambda = 0.05 )
+
+gf = goodfit( sim, 'poisson')
+
+rootogram(gf)
+```
+
