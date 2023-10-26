@@ -10,6 +10,11 @@ a clinical study of drug treating hypertension
 n = 20 
 compare the blood pressure of the control vs. the treated group
 
+
+```{r}
+help(t.test)
+```
+
 ## a. both-tail
 
 ```{r}
@@ -21,11 +26,11 @@ t.test( group_control, group_treat )
 ## b. plot
 
 ```{r}
-x=seq(-4,4,length.out=100)
+x = seq( -4,4, length.out = 100 ) # assign x 
       
 plot(x, dt(x,17.811), type="l")  # plot the PDF of the t-distribution
 
-abline( v = c(-1, 1)*qt(0.975, 17.811) )
+abline( v = c(-1, 1)*qt(0.975, 17.811), col='red' )
 
 abline( v = 0.951 )
 
@@ -35,7 +40,7 @@ axis( 1, at = 0.951, 't-obs') # add axis label 't-obs' at position x = 0.95
 ## c. right-tail 
 
 ```{r}
-t.test( group_control, group_treat, paired = TRUE, alternative = 'greater')
+t.test( group_control, group_treat, alternative = 'greater')
 ```
 
 ## d. plot
@@ -43,14 +48,31 @@ t.test( group_control, group_treat, paired = TRUE, alternative = 'greater')
 ```{r}
 x = seq(-4, 4, by = 0.01)
 
-plot( x, dt(x, 9), type = 'l')
+plot( x, dt(x, 17.888), type = 'l')
 
-abline( v = 1 * qt( 0.95, 9) )  # 95% CI left-tailed
+abline( v = qt( 0.95, 17.888), col = 'red' )  # 95% CI left-tailed
 
 abline( v = 0.95164)  # add vertical line for t-statistic
 
 axis (1, at =  0.95164,  't-obs')
 ```
 
+### 1. dt( x, 17.888 )
 
+probability density function (PDF) of a t-distribution with 17.888 degrees of freedom 
+
+```{r}
+dt( x, 17.888 )
+```
+
+### 2. qt( 0.95, 17.888)
+
+      - qt( ) cals. t-critical value for a given CI and deg. of freedom 
+      
+      - value of t-statistic for the left-tailed 95% confidence interval 
+      
+```{r}
+v = qt( 0.95, 17.888 )
+v
+```
 

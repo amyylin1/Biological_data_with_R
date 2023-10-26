@@ -1,0 +1,60 @@
+
+
+# poisson 
+
+mutation at each position of the RT genes follows a Poisson(0.005) distribution
+
+the number of mutation in the first 10,000 position follows a Poisson distribution with a rate paramter
+
+# I. dpois()
+
+## 1. rate parameter for 10,000 positions
+
+```{r}
+lambda = 0.0005 
+position = 10000
+rate_parameter = lambda * position
+rate_parameter
+```
+
+## 2. dpois()
+
+the probability of seeing 3 mutation in the sequence length of 10,000 
+
+```{r}
+y <- dpois( x = 3, rate_parameter )
+y
+```
+
+## 3. mean(), var()
+
+```{r}
+mean(y)
+var(y)
+```
+
+# II. rpois()
+
+generate randome number that follow Poisson(5) 
+
+## 1. rpois()
+
+```{r}
+x <- rpois( n = 10000, lambda = 5)
+x
+```
+
+## 2. hist()
+
+```{r}
+hist( x)
+```
+
+## 3. mean(), var()
+
+```{r}
+mean(x)
+var(x)
+```
+
+The mean and variance of poisson distribution is like lambda. 

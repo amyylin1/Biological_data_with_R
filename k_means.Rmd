@@ -1,0 +1,58 @@
+
+# k-means in R
+
+```{r}
+help(kmeans)
+```
+
+kmeans(x, centers)
+
+
+```{r}
+library(datasets)
+
+faith_2 <- kmeans(faithful, 2)  # assign 2 centers to the data faithful
+faith_2
+```
+
+# 1. names()
+
+```{r}
+help(names)
+```
+
+names(x) 
+      x is an R object
+
+
+## a. names(faith_2)
+
+What are the names in the faithful data
+
+```{r}
+names(faith_2)
+```
+
+# 2. plot()
+
+## a. data[, 1]
+
+for first column
+
+```{r}
+faithful[, 1]
+```
+
+
+## b. plot(data[, 1], data[, 2])
+
+```{r}
+plot(faithful[, 1], faithful[, 2])
+```
+
+## c. col=kmean$cluster
+
+```{r}
+plot(faithful[, 1], faithful[, 2], col = faith_2$cluster)
+```
+

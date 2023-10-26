@@ -1,0 +1,42 @@
+
+# binomial distribution
+
+# I. ribinom( )
+
+generate a random number draw 
+
+simulates sequnce of fifteen fair coin tosses
+
+or
+
+simulates 15 Bernoulli trials
+
+```{r}
+rbinom( n = 15, prob = 0.5, size = 1)
+```
+
+# II. dbinom()
+
+## 1. P(X=5)
+
+```{r}
+dbinom( x = 5, prob = 0.5, size = 15)
+```
+
+## 2. P(all ns)
+
+```{r}
+vec_15 <- dbinom( 0:15, prob = 0.5, size = 15)
+vec_15
+```
+
+## 3. plot( type = 'h')
+
+- type = 'h' 
+      create a line plot with vertical lines 
+      catagorical data
+      
+```{r}
+plot( vec_15, type = 'h' )
+```
+
