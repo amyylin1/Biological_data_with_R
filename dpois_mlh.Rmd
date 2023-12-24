@@ -55,5 +55,5 @@ gf$par
 rootogram(goodfit( e100, 'poisson' ))
 ```
 
-
+ 
 

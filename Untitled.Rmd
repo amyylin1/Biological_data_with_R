@@ -1,0 +1,148 @@
+```{r}
+install.packages("EMImage")
+```
+
+```{r}
+install.packages("EBImage")
+
+```
+
+
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("EBImage")
+
+```
+
+```{r}
+library("EBImage")
+imagefile = system.file("images", "mosquito.png", package = "MSMB")
+mosq = readImage(imagefile)
+```
+
+```{r}
+library(jpeg)
+```
+
+```{r}
+# Install and load the 'jpeg' package if not already done
+# install.packages("jpeg")
+# library(jpeg)
+
+k.means.to.image <- function() {
+  # Prompt user to choose a JPEG file
+  file_path <- file.choose()
+  
+  tryCatch({
+    # Read the selected JPEG image
+    im.mat <- readJPEG(file_path)
+    
+    # Number of clusters K
+    K <- as.numeric(readline("Enter the number of clusters (K): "))
+    
+    # Coerce image into matrix
+    orig.dim <- dim(im.mat)
+    new.im <- im.mat
+    dim(new.im) <- c(orig.dim[1] * orig.dim[2], 3)
+    
+    # Do K means!
+    k.list <- kmeans(new.im, K)
+    
+    out.im <- matrix(0, nrow = orig.dim[1] * orig.dim[2], ncol = 3)
+    
+    for (k in 1:K) {
+      out.im[(k.list$cluster == k), 1] <- k.list$centers[k, 1]
+      out.im[(k.list$cluster == k), 2] <- k.list$centers[k, 2]
+      out.im[(k.list$cluster == k), 3] <- k.list$centers[k, 3]
+    }
+    
+    # Re-coerce new image to the original size
+    dim(out.im) <- orig.dim
+    
+    # Plot the original and segmented images
+    par(mfrow = c(1, 2))
+    image(im.mat, main = "Original Image")
+    image(out.im, main = "Segmented Image")
+    
+    return(out.im)
+  }, error = function(e) {
+    cat("Error:", conditionMessage(e), "\n")
+  })
+}
+
+# Call the function
+k.means.to.image()
+
+
+```
+
+
+```{r}
+k.means.to.image <- function(){
+  # Prompt user to choose a JPEG file
+  file_path <- file.choose()
+  
+  # Read the selected JPEG image
+  im.mat <- readJPEG(file_path)  # You may need to install and load the 'jpeg' package if not already done
+  
+  # Number of clusters K
+  K <- as.numeric(readline("Enter the number of clusters (K): "))
+  
+  # Coerce image into matrix
+  orig.dim <- dim(im.mat)
+  new.im <- im.mat
+  dim(new.im) <- c(orig.dim[1]*orig.dim[2], 3)
+  
+  # Do K means!
+  k.list <- kmeans(new.im, K)
+  
+  out.im <- matrix(0, nrow = orig.dim[1]*orig.dim[2], ncol = 3)
+  
+  for (k in 1:K){
+    out.im[(k.list$cluster==k), 1] <- k.list$centers[k, 1]
+    out.im[(k.list$cluster==k), 2] <- k.list$centers[k, 2]
+    out.im[(k.list$cluster==k), 3] <- k.list$centers[k, 3]
+  }
+  
+  # Re-coerce new image to original size
+  dim(out.im) <- orig.dim
+  
+  # Plot the original and segmented images
+  par(mfrow = c(1, 2))
+  image(im.mat, main = "Original Image")
+  image(out.im, main = "Segmented Image")
+  
+  return(out.im)
+}
+
+# Call the function
+k.means.to.image()
+
+```
+
+```{r}
+k.means.to.image <- function(im.mat,K){
+	# image im.mat, number of clusters K	# coerce image into matrix
+	orig.dim <- dim(im.mat)
+	
+	new.im <- im.mat
+	dim(new.im) <- c(orig.dim[1]*orig.dim[2],3)
+	
+	# Do K means!
+	k.list <- kmeans(new.im,K)
+	
+	out.im <- mat.or.vec(orig.dim[1]*orig.dim[2],3)
+	
+	for (k in 1:K){
+		out.im[(k.list$cluster==k),1] <- k.list$centers[k,1]
+		out.im[(k.list$cluster==k),2] <- k.list$centers[k,2]
+		out.im[(k.list$cluster==k),3] <- k.list$centers[k,3]
+		}
+	
+	# Re-coerce new image to original size
+	dim(out.im) <- orig.dim
+	return(out.im)
+	}
+```
+

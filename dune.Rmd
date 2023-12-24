@@ -1,0 +1,57 @@
+
+```{r}
+#install.packages('vegan')
+library(vegan)
+```
+
+```{r}
+data(dune)
+dune
+```
+
+```{r}
+dim(dune)
+```
+
+- transpose the matrix, so that the subjects are the rows
+
+```{r}
+tdune <- t( dune )
+tdune
+```
+```{r}
+dim(tdune)
+```
+
+```{r}
+dist.dune = vegdist( tdune )
+dist.dune
+```
+
+- generate a distance matrix 
+w method = 'manhattan'
+
+```{r}
+dist.dune = dist(dune_t, method = 'manhattan', diag = TRUE )
+dist.dune
+```
+
+
+```{r}
+plot( hclust(dist.dune, method = 'single' ))
+```
+
+```{r}
+plot( hclust(dist.dune, method = 'complete' ))
+```
+
+```{r}
+plot( hclust (dist.dune, method = 'average') )
+```
+
+```{r}
+library(ape)
+plot( nj(dist.dune ))
+#axis(1)
+```
+

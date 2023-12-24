@@ -1,0 +1,62 @@
+
+
+# hierachical clustering using the 'faithfu' dataset
+
+# 1. library(datasets)
+
+- load the required library
+
+- cal. the number of observations in the faithful dataset
+
+```{r}
+library(datasets)
+n_faithful <- length( faithful[, 1] )
+n_faithful
+```
+
+# 2. faithful data
+```{r}
+faithful
+```
+
+# 3. sel. the first 30 row
+
+```{r}
+cc_small <- faithful[ sample(1:n_faithful, 30), ]
+cc_small
+```
+
+# 4. length()
+
+- cal. the numb. of observations
+
+```{r}
+n_small <- length( cc_small[ , 1] )
+n_small
+```
+
+# 4. dist()
+
+- cal. pairwise distances
+
+```{r}
+d.list.small <- dist(cc_small)
+d.list.small
+```
+
+
+# 5. hclust()
+
+- perform hierachical clustering w/ single linkage
+
+```{r}
+h.list.small <- hclust( d.list.small, method = 'single' )
+h.list.small
+```
+
+# 6. plot dendrogram
+
+```{r}
+plot(h.list.small)
+```
+
