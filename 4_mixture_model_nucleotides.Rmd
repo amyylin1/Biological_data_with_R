@@ -1,0 +1,29 @@
+
+
+# 4.2.4 more than 2 components
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+```
+
+beyong n = 2, n = 4 (4 nucleotides)
+```{r}
+masses = c( A =  331, C =  307, G =  347, T =  322 )
+
+probs  = c( A = 0.12, C = 0.38, G = 0.36, T = 0.14 )
+
+n  = 7000 # 7000 nucleotides
+sd = 3
+nuclt   = sample( length(probs), n, replace = TRUE, prob = probs)
+
+quadwts = rnorm( length(nuclt),
+                mean = masses[nuclt],
+                sd   = sd )
+
+ggplot(tibble(quadwts = quadwts), aes(x = quadwts)) +
+  geom_histogram(bins = 100, fill = "purple")
+```
+
+
+
